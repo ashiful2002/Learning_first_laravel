@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\carController;
+use App\Http\Controllers\MathController;
+use App\Http\Controllers\productController;
 use Illuminate\Support\Facades\Route;
 use PHPStan\Rules\Functions\ReturnNullsafeByRefRule;
 
@@ -50,25 +52,32 @@ $person = ["name" => "mukto", "email" => "mukto@com"];
 
 
 
-Route::get("{lang}/product/{id}", function (string $lang, string $id) {
-    return "Language is  $lang and the id is $id";
-})->name("product.view");
+// Route::get("{lang}/product/{id}", function (string $lang, string $id) {
+//     return "Language is  $lang and the id is $id";
+// })->name("product.view");
 
 
-Route::get("sum/{a}/{b}", function (float $a, float $b) {
-    return $a * $b;
-});
+// Route::get("sum/{a}/{b}", function (float $a, float $b) {
+//     return $a * $b;
+// });
 
-Route::controller(carController::class)->group(function () {
-    Route::get("/car", "index");
-    Route::get("/my-car", "myCars");
-});
+// Route::controller(carController::class)->group(function () {
+//     Route::get("/car", "index");
+//     Route::get("/my-car", "myCars");
+// });
 
-Route::prefix("admin")->group((function () {
-    Route::get("/users", function () {
-        return "/admin/users";
-    });
-}));
+// Route::prefix("admin")->group((function () {
+//     Route::get("/users", function () {
+//         return "/admin/users";
+//     });
+// }));
+
+// Route::resource("/products", controller: productController::class)
+//     // ->except(["destroy"]);
+//     ->only(["destroy"]);
+
+// Route::get("/sum/{a}/{b}", [MathController::class, "sum"])->whereNumber(['a', 'b']);
+// Route::get("/substract/{a}/{b}", [MathController::class, "substract"])->whereNumber(['a', 'b']);
 
 Route::fallback(function () {
     return "Fallback=>  404 - not found";
